@@ -1,14 +1,12 @@
-from mycroft.configuration.config import ConfigurationManager
-
+import sys
 import unittest
 
-from xmlrunner import XMLTestRunner
 import os
-import sys
+from xmlrunner import XMLTestRunner
 
+from mycroft.configuration.config import ConfigurationManager
 
 __author__ = 'seanfitz'
-
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 OUTPUT_DIR = os.path.dirname(os.path.dirname(__file__))
