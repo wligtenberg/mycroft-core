@@ -41,10 +41,8 @@ class NPRNewsSkill(MycroftSkill):
     def initialize(self):
         self.load_data_files(dirname(__file__))
 
-        intent = IntentBuilder(
-            'NPRNewsStopIntent').require('NPRNewsStopVerb') \
-            .require('NPRNewsKeyword').build()
-        self.register_intent(intent, self.__handle_stop)
+        intent = IntentBuilder('NPRStopIntent').require('NPRNewsStopVerb')
+        self.register_intent(intent, self.handle_stop)
 
         intent = IntentBuilder("NPRNewsIntent").require(
             "NPRNewsKeyword").build()
@@ -62,6 +60,9 @@ class NPRNewsSkill(MycroftSkill):
 
         except Exception as e:
             LOGGER.error("Error: {0}".format(e))
+
+    def  handle_stop(self, message):
+        self.__handle_stop(message)
 
     def __handle_stop(self, message):
         if self.process and self.process.poll() is None:
